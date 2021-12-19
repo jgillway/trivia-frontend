@@ -1,6 +1,6 @@
 import './styles/App.css';
 
-function App() {
+function Card() {
   function handleCardClick(e) {
     e.parentElement.classList.toggle('is-flipped')
   }
@@ -15,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default Card;
