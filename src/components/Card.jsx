@@ -1,4 +1,4 @@
-import './styles/App.css';
+import './styles/Card.css';
 
 function Card() {
   function handleCardClick(e) {
