@@ -18,6 +18,8 @@ ReactDOM.render(
         <h2>TITLE HEADING</h2>
         <div className='card_container'>
           <Card />
+          <Card />
+          <Card />
         </div>
       </div>
       <div className="footer">
