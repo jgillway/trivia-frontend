@@ -1,15 +1,28 @@
 import './styles/Card.css';
 
 function Card() {
-  function handleCardClick(e) {
-    e.parentElement.classList.toggle('is-flipped')
-  }
+  const cards = document.getElementsByClassName('card');
+  for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function(){
+          this.classList.toggle('is-flipped');
+      })
+  };
 
   return (
     <div className='container'>
-      <div className='card' onClick={(e) => handleCardClick(e.target)}>
-        <div className='card__face card__face--front'>test</div>
-        <div className='card__face card__face--back'>test back</div>
+      <div className='card'>
+        <div className='card__face card__face--front'>
+          <div className='titleFront'>
+            category
+          </div>
+          <p>Question</p>
+        </div>
+        <div className='card__face card__face--back'>
+          <div className='titleBack'>
+            question
+          </div>
+          <p>Answer</p>
+        </div>
       </div>
     </div>
   );

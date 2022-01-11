@@ -16,6 +16,18 @@
   transform-origin: center right; 
 }
 
+.titleFront, .titleBack {
+  width: 500px;
+  height: 40px;
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  background: #6f9fd8;
+  color: black;
+
+}
+
 .card__face {
   width: 500px;
   height: 200px;
@@ -23,19 +35,19 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   text-align: center;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 20px;
   position: absolute;
   backface-visibility: hidden;
 }
 
 .card__face--front {
-  background: rgb(129, 122, 122);
+  background: #e2ecf7;
   color: black;
 }
 
 .card__face--back {
-  background: #3d85c6;
-  color: white;
+  background: #c5d8ef;
+  color: black;
   transform: rotateY( 180deg );
 }
 
