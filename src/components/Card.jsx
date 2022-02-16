@@ -14,10 +14,6 @@ class Card extends React.Component {
       isLoading: this.props.loading,
     }
 
-    if(this.props.loading){
-      this.resetFlipped();
-    }
-
     this.handleClick = this.handleClick.bind(this);
     this.resetFlipped = this.resetFlipped.bind(this);
   }
