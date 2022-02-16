@@ -2,14 +2,49 @@ import React from 'react';
 import './styles/Card.css';
 
 class Card extends React.Component {
-  state = {
-    isFlipped: false
+  static getDerivedStateFromProps = (nextProps, prevState) =>
+    nextProps.loading === prevState.loading
+      ? null
+      : { isLoading: nextProps.loading };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isFlipped: false,
+      isLoading: this.props.loading,
+    }
+
+    if(this.props.loading){
+      this.resetFlipped();
+    }
+
+    this.handleClick = this.handleClick.bind(this);
+    this.resetFlipped = this.resetFlipped.bind(this);
   }
+
+  handleClick() {
+    if(!this.props.loading){
+      this.setState(prevState => ({
+        isFlipped: !prevState.isFlipped
+      }));
+    }
+  }
+
+  resetFlipped() {
+    if(this.state.isFlipped){
+      this.setState(prevState => ({
+        isFlipped: !prevState.isFlipped
+      }));
+    }
+  }
+
   render() {
-    const { isFlipped } = this.state;
+    if(this.state.isFlipped && this.state.isLoading){
+      this.resetFlipped();
+    }
     return (
       <div className='container'>
-        <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} onClick={() => this.setState({isFlipped: !isFlipped})}>
+        <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} onClick={this.handleClick}>
           <div className='card__face card__face--front'>
             <div className='titleFront'>
               category
