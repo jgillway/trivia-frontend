@@ -13,7 +13,7 @@ class RefreshArrow extends React.Component {
         <span className="tooltiptext">Refresh</span>
         <div className="refresh_wrapper">
           <div className={ `rotator ${ this.props.loading ? ' active' : '' }` } onClick={ this.handleRefresh.bind(this) }>
-            <div className="circle"></div>
+            <div className="refresh_circle"></div>
             <div className="arrow"></div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/App.css';
 import Card from'./Card';
 import RefreshArrow from './RefreshArrow';
+import AddQuestion from './AddQuestion';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends React.Component {
         </div>
         <div className="main">
           <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isLoading } /></div>
+          <div className='add_question'><AddQuestion /></div>
           <h2>TITLE HEADING</h2>
           <div className='refresh_container'>
           </div>
