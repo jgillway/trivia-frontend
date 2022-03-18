@@ -3,10 +3,6 @@ import './styles/AddQuestion.css';
 
 class AddQuestion extends React.Component {
 
-  handleRefresh() {
-    this.props.changeRefresh();
-  }
-
   render() {
     return (
       <div className="tooltip">
