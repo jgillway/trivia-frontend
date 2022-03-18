@@ -2,13 +2,10 @@ import React from 'react';
 import './styles/AddQuestionModal.css'
 
 const AddQuestionModal = props => {
-  if(!props.show) {
-    return null
-  }
 
     return (
-      <div className='modal'>
-          <div className='modal-content'>
+      <div className={`modal ${props.show ? 'show' : ''}`} onClick={ () => props.changeShow() }>
+          <div className='modal-content' onClick={ e => e.stopPropagation() }>
             <div className='modal-header'>
                 <h4 className='modal-title'>Modal Title</h4>
             </div>
