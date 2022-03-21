@@ -33,7 +33,6 @@ class App extends React.Component {
   render() {
     return (
       <>
-      {console.log(this.state.show)}
         <div className="header">
           <h1>Header Title</h1>
           <p>Header sub-text</p>
