@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/AddQuestionModal.css'
+import { addQuestion } from './api/QuestionApi';
 
 const AddQuestionModal = props => {
+
+    const [question, setQuestion] = useState({
+        text: "",
+        answer: "",
+        category: "",
+        isValid: false
+    });
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        await addQuestion(question);
+        props.changeShow();
+    }
+
+    function handleInputChange(event) {
+        setQuestion({ ...question, [event.target.id]: event.target.value });
+    }
 
     return (
       <div className={`modal ${props.show ? 'show' : ''}`} onClick={ () => props.changeShow() }>
@@ -9,20 +27,20 @@ const AddQuestionModal = props => {
             <div className='modal-header'>
                 <h4 className='modal-title'>Add A New Question</h4>
             </div>
-            <div className='modal-body'>
-                <form className='add-question'>
+            <form className='add-question' onSubmit={handleSubmit}>
+                <div className='modal-body'>
                     <label htmlFor='question'><b>Question:&nbsp;</b></label>
-                    <input type='text' id='question' name='question'></input><br /><br />
+                    <input type='text' id='text' onChange={handleInputChange} value={question.text}></input><br /><br />
                     <label htmlFor='answer'><b>Answer:&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-                    <input type='text' id='answer' name='answer'></input><br /><br />
+                    <input type='text' id='answer' onChange={handleInputChange} value={question.answer}></input><br /><br />
                     <label htmlFor='category'><b>Category:&nbsp;</b></label>
-                    <input type='text' id='category' name='category'></input><br />
-                </form>
-            </div>
-            <div className='modal-footer'>
-                <button className='question-submit'>Submit</button>
-                <button className='modal-close' onClick={() => props.changeShow() }>Close</button>
-            </div>
+                    <input type='text' id='category' onChange={handleInputChange} value={question.category}></input><br />
+                </div>
+                <div className='modal-footer'>
+                    <input type='submit' className='question-submit' value='Add Question' />
+                    <button className='modal-close' onClick={() => props.changeShow() }>Close</button>
+                </div>
+            </form>
           </div>
       </div>
     )
