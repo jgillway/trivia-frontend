@@ -6,11 +6,7 @@ export function addQuestion(question) {
         },
         body: JSON.stringify(question)
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
+    .then(response => {
+        return response.text()
     })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 }
