@@ -4,6 +4,7 @@ import Card from'./Card';
 import RefreshArrow from './RefreshArrow';
 import AddQuestion from './AddQuestion';
 import AddQuestionModal from './AddQuestionModal';
+import { getQuestions } from './api/CardApi';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,11 +12,17 @@ class App extends React.Component {
 
     this.state = {
       isLoading: false,
+      questionStack: [],
       show: false
     }
 
     this.onChangeRefresh = this.onChangeRefresh.bind(this);
     this.onChangeShow = this.onChangeShow.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ questionStack: getQuestions() });
+    console.log(this.state.questionStack); 
   }
 
   onChangeRefresh() {
@@ -28,6 +35,10 @@ class App extends React.Component {
     this.setState(prevState => ({
       show: !prevState.show
     }));
+  }
+
+  getCardInfo() {
+    return this.state.questionStack.pop();
   }
 
   render() {
@@ -43,9 +54,9 @@ class App extends React.Component {
           <div className='add_question' onClick={ this.onChangeShow }><AddQuestion /></div>
           <h2>TITLE HEADING</h2>
           <div className='card_container'>
-            <Card loading={ this.state.isLoading } />
-            <Card loading={ this.state.isLoading } />
-            <Card loading={ this.state.isLoading } />
+            <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
+            <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
+            <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
           </div>
         </div>
         <div className="footer">
