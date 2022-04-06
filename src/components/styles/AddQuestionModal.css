@@ -1,5 +1,7 @@
 .modal {
     position: fixed;
+    width: 100%;
+    max-width: 1502px;
     left: 0;
     top: 0;
     right: 0;

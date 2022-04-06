@@ -39,17 +39,16 @@ class App extends React.Component {
         </div>
         <div className="main">
           <AddQuestionModal show={this.state.show} changeShow={ this.onChangeShow } />
-          <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isLoading } /></div>
-          <div className='add_question' onClick={ this.onChangeShow }><AddQuestion /></div>
+          <div className='widget_container'>
+            <div className='add_question' onClick={ this.onChangeShow }><AddQuestion /></div>
+            <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isLoading } /></div>
+          </div>
           <h2>TITLE HEADING</h2>
           <div className='card_container'>
             <Card loading={ this.state.isLoading } />
             <Card loading={ this.state.isLoading } />
             <Card loading={ this.state.isLoading } />
           </div>
-        </div>
-        <div className="footer">
-          <h2>Footer</h2>
         </div>
       </>
     );
