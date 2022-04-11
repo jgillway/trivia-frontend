@@ -13,16 +13,24 @@ class App extends React.Component {
     this.state = {
       isLoading: false,
       questionStack: [],
-      show: false
+      show: false,
+      cardRender: false
     }
 
     this.onChangeRefresh = this.onChangeRefresh.bind(this);
     this.onChangeShow = this.onChangeShow.bind(this);
+    this.getCardInfo = this.getCardInfo.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ questionStack: getQuestions() });
-    console.log(this.state.questionStack); 
+    var promise = getQuestions();
+    promise.then(data => {
+      this.setState({ 
+        questionStack: data,
+        cardRender: true
+      });
+    })
+
   }
 
   onChangeRefresh() {
@@ -42,6 +50,7 @@ class App extends React.Component {
   }
 
   render() {
+    const renderCards = this.state.cardRender;
     return (
       <>
         <div className="header">
@@ -55,11 +64,15 @@ class App extends React.Component {
             <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isLoading } /></div>
           </div>
           <h2>TITLE HEADING</h2>
-          <div className='card_container'>
-            <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
-            <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
-            <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
-          </div>
+          {renderCards
+            ? <div className='card_container'>
+                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
+                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
+              </div>
+            : <div className='card_container'>
+                <h3>Loading please wait!</h3>
+              </div>
+          }
         </div>
       </>
     );

@@ -1,11 +1,11 @@
-export function getQuestions() {
-    return fetch("http://localhost:3333/questions", {
+export async function getQuestions() {
+    var response = await fetch("http://localhost:3333/questions", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
     })
-    .then(response => {
-        return response.json();
-    })
+
+    let data = await response.json();
+    return data;
 }
