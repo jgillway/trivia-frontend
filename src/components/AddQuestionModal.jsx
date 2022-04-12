@@ -30,11 +30,11 @@ const AddQuestionModal = props => {
             <form className='add-question' onSubmit={handleSubmit}>
                 <div className='modal-body'>
                     <label htmlFor='question'><b>Question:&nbsp;</b></label>
-                    <input type='text' id='text' onChange={handleInputChange} value={question.text}></input><br /><br />
+                    <input type='text' id='text' onChange={handleInputChange} value={question.text} required></input><br /><br />
                     <label htmlFor='answer'><b>Answer:&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-                    <input type='text' id='answer' onChange={handleInputChange} value={question.answer}></input><br /><br />
+                    <input type='text' id='answer' onChange={handleInputChange} value={question.answer} required></input><br /><br />
                     <label htmlFor='category'><b>Category:&nbsp;</b></label>
-                    <input type='text' id='category' onChange={handleInputChange} value={question.category}></input><br />
+                    <input type='text' id='category' onChange={handleInputChange} value={question.category} required></input><br />
                 </div>
                 <div className='modal-footer'>
                     <input type='submit' className='question-submit' value='Add Question' />
