@@ -4,7 +4,7 @@ import Card from'./Card';
 import RefreshArrow from './RefreshArrow';
 import AddQuestion from './AddQuestion';
 import AddQuestionModal from './AddQuestionModal';
-import { getQuestions } from './api/CardApi';
+import { getQuestionsAPI } from './api/CardApi';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,14 +23,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    var promise = getQuestions();
+    this.getQuestions();
+  }
+
+  getQuestions() {
+    var promise = getQuestionsAPI();
     promise.then(data => {
       this.setState({ 
         questionStack: data,
         cardRender: true
       });
     })
-
   }
 
   onChangeRefresh() {
@@ -51,6 +54,7 @@ class App extends React.Component {
 
   render() {
     const renderCards = this.state.cardRender;
+    console.log(this.state.questionStack);
     return (
       <>
         <div className="header">
@@ -66,6 +70,8 @@ class App extends React.Component {
           <h2>TITLE HEADING</h2>
           {renderCards
             ? <div className='card_container'>
+                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
+                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
                 <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
                 <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
               </div>
