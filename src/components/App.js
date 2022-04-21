@@ -41,7 +41,7 @@ class App extends React.Component {
     this.setState(prevState => ({
       isLoading: true
     }));
-    getQuestions();
+    this.getQuestions();
   }
 
   onChangeShow() {
