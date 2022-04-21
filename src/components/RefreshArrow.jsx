@@ -2,7 +2,6 @@ import React from 'react';
 import './styles/RefreshArrow.css';
 
 class RefreshArrow extends React.Component {
-
   handleRefresh() {
     this.props.changeRefresh();
   }

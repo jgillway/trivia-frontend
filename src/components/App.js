@@ -31,15 +31,17 @@ class App extends React.Component {
     promise.then(data => {
       this.setState({ 
         questionStack: data,
-        cardRender: true
+        cardRender: true,
+        isLoading: false
       });
     })
   }
 
   onChangeRefresh() {
     this.setState(prevState => ({
-      isLoading: !prevState.isLoading
+      isLoading: true
     }));
+    getQuestions();
   }
 
   onChangeShow() {
