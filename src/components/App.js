@@ -75,7 +75,6 @@ class App extends React.Component {
                 <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
                 <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
                 <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
-                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
               </div>
             : <div className='card_container'>
                 <h3>Loading please wait!</h3>
