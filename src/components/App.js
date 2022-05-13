@@ -11,19 +11,22 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isLoading: false,
+      isFlipped: false,
       questionStack: [],
-      show: false,
-      cardRender: false
+      showAddQuestionModel: false,
+      loadingScreen: false
     }
 
     this.onChangeRefresh = this.onChangeRefresh.bind(this);
-    this.onChangeShow = this.onChangeShow.bind(this);
+    this.onChangeShowAddQuestionModel = this.onChangeShowAddQuestionModel.bind(this);
     this.getCardInfo = this.getCardInfo.bind(this);
+    this.loadMore = this.loadMore.bind(this);
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
   componentDidMount() {
     this.getQuestions();
+    window.addEventListener('scroll', this.loadMore, false);
   }
 
   getQuestions() {
@@ -31,22 +34,23 @@ class App extends React.Component {
     promise.then(data => {
       this.setState({ 
         questionStack: data,
-        cardRender: true,
-        isLoading: false
+        loadingScreen: true,
+        isFlipped: false
       });
     })
   }
 
   onChangeRefresh() {
     this.setState(prevState => ({
-      isLoading: true
+      isFlipped: true
     }));
+    this.setState({ loadingScreen: false })
     this.getQuestions();
   }
 
-  onChangeShow() {
+  onChangeShowAddQuestionModel() {
     this.setState(prevState => ({
-      show: !prevState.show
+      showAddQuestionModel: !prevState.showAddQuestionModel
     }));
   }
 
@@ -54,8 +58,32 @@ class App extends React.Component {
     return this.state.questionStack.pop();
   }
 
+  showItems() {
+    var items = [];
+    for (var i = 0; i <= this.state.questionStack.length; i++) {
+      items.push(
+        <>
+          <tr>
+            <td><Card key={i} loading={ this.state.isFlipped } getCardInfo={ this.getCardInfo } /></td>
+            <td><Card key={i+=1} loading={ this.state.isFlipped } getCardInfo={ this.getCardInfo } /></td>
+            <td><Card key={i+=2} loading={ this.state.isFlipped } getCardInfo={ this.getCardInfo } /></td>
+          </tr>
+        </>
+      );
+    }
+
+    return items;
+  }
+
+  loadMore() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.setState({ loadingScreen: false })
+      this.getQuestions();
+    }
+  }
+
   render() {
-    const renderCards = this.state.cardRender;
+    const renderCards = this.state.loadingScreen;
     console.log(this.state.questionStack);
     return (
       <>
@@ -64,17 +92,23 @@ class App extends React.Component {
           <p>Header sub-text</p>
         </div>
         <div className="main">
-          <AddQuestionModal show={this.state.show} changeShow={ this.onChangeShow } />
-          <div className='widget_container'>
-            <div className='add_question' onClick={ this.onChangeShow }><AddQuestion /></div>
-            <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isLoading } /></div>
+          <AddQuestionModal show={ this.state.showAddQuestionModel } changeShow={ this.onChangeShowAddQuestionModel } />
+          <div className='widget_container' >
+            <div className='add_question' onClick={ this.onChangeShowAddQuestionModel }><AddQuestion /></div>
+            <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isFlipped } /></div>
           </div>
           <h2>TITLE HEADING</h2>
           {renderCards
             ? <div className='card_container'>
-                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
-                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
-                <Card loading={ this.state.isLoading } getCardInfo={ this.getCardInfo } />
+                <table>
+                  <thead>
+                  </thead>
+                  <tbody>
+                    {this.showItems()}
+                  </tbody>
+                  <tfoot>
+                  </tfoot>
+                </table>
               </div>
             : <div className='card_container'>
                 <h3>Loading please wait!</h3>

@@ -51,7 +51,7 @@ class Card extends React.Component {
         <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} onClick={this.handleClick}>
           <div className='card__face card__face--front'>
             <div className='titleFront'>
-              {this.state.card.category}
+               {this.state.card.category}
             </div>
             <p>{this.state.card.text}</p>
           </div>
