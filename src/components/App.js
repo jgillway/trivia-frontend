@@ -19,7 +19,6 @@ class App extends React.Component {
 
     this.onChangeRefresh = this.onChangeRefresh.bind(this);
     this.onChangeShowAddQuestionModel = this.onChangeShowAddQuestionModel.bind(this);
-    this.getCardInfo = this.getCardInfo.bind(this);
     this.loadMore = this.loadMore.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
   }
@@ -33,7 +32,7 @@ class App extends React.Component {
     var promise = getQuestionsAPI();
     promise.then(data => {
       this.setState({ 
-        questionStack: data,
+        questionStack: this.state.questionStack.concat(data),
         loadingScreen: true,
         isFlipped: false
       });
@@ -44,7 +43,8 @@ class App extends React.Component {
     this.setState(prevState => ({
       isFlipped: true
     }));
-    this.setState({ loadingScreen: false })
+    this.setState({ loadingScreen: false });
+    this.setState({ questionStack: [] })
     this.getQuestions();
   }
 
@@ -54,19 +54,15 @@ class App extends React.Component {
     }));
   }
 
-  getCardInfo() {
-    return this.state.questionStack.pop();
-  }
-
   showItems() {
     var items = [];
-    for (var i = 0; i <= this.state.questionStack.length; i++) {
+    for (var i = 0; i < this.state.questionStack.length - 3; i + 3) {
       items.push(
         <>
           <tr>
-            <td><Card key={i} loading={ this.state.isFlipped } getCardInfo={ this.getCardInfo } /></td>
-            <td><Card key={i+=1} loading={ this.state.isFlipped } getCardInfo={ this.getCardInfo } /></td>
-            <td><Card key={i+=2} loading={ this.state.isFlipped } getCardInfo={ this.getCardInfo } /></td>
+            <td><Card key={i} loading={ this.state.isFlipped } card={ this.state.questionStack[i] } /></td>
+            <td><Card key={i+=1} loading={ this.state.isFlipped } card={ this.state.questionStack[i +1 ] } /></td>
+            <td><Card key={i+=2} loading={ this.state.isFlipped } card={ this.state.questionStack[ i+ 2] } /></td>
           </tr>
         </>
       );
@@ -84,7 +80,6 @@ class App extends React.Component {
 
   render() {
     const renderCards = this.state.loadingScreen;
-    console.log(this.state.questionStack);
     return (
       <>
         <div className="header">

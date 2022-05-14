@@ -12,18 +12,11 @@ class Card extends React.Component {
     this.state = {
       isFlipped: false,
       isLoading: this.props.loading,
-      card: {},
+      card: this.props.card
     }
 
     this.handleClick = this.handleClick.bind(this);
     this.resetFlipped = this.resetFlipped.bind(this);
-  }
-
-  componentDidMount() {
-    var data = this.props.getCardInfo();
-    this.setState({
-      card: data
-    })
   }
 
   handleClick() {
@@ -48,18 +41,18 @@ class Card extends React.Component {
     }
     return (
       <div className='container'>
-        <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} onClick={this.handleClick}>
+        <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} >
           <div className='card__face card__face--front'>
             <div className='titleFront'>
-               {this.state.card.category}
+               {this.props.card.category}
             </div>
-            <p>{this.state.card.text}</p>
+            <p>{this.props.card.text}</p>
           </div>
           <div className='card__face card__face--back'>
             <div className='titleBack'>
-              {this.state.card.text}
+              {this.props.card.text}
             </div>
-            <p>{this.state.card.answer}</p>
+            <p>{this.props.card.answer}</p>
           </div>
         </div>
       </div>
