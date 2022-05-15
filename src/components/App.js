@@ -56,16 +56,17 @@ class App extends React.Component {
 
   showItems() {
     var items = [];
+
     for (var i = 0; i < this.state.questionStack.length - 3; i + 3) {
-      items.push(
-        <>
-          <tr>
-            <td><Card key={i} loading={ this.state.isFlipped } card={ this.state.questionStack[i] } /></td>
-            <td><Card key={i+=1} loading={ this.state.isFlipped } card={ this.state.questionStack[i +1 ] } /></td>
-            <td><Card key={i+=2} loading={ this.state.isFlipped } card={ this.state.questionStack[ i+ 2] } /></td>
-          </tr>
-        </>
-      );
+        items.push(
+          <>
+            <tr>
+              <td><Card key={i} loading={ this.state.isFlipped } card={ this.state.questionStack[i] } /></td>
+              <td><Card key={i+=1} loading={ this.state.isFlipped } card={ this.state.questionStack[i +1 ] } /></td>
+              <td><Card key={i+=2} loading={ this.state.isFlipped } card={ this.state.questionStack[ i+ 2] } /></td>
+            </tr>
+          </>
+        );
     }
 
     return items;
@@ -73,7 +74,6 @@ class App extends React.Component {
 
   loadMore() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      this.setState({ loadingScreen: false })
       this.getQuestions();
     }
   }
