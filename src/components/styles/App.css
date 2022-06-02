@@ -40,7 +40,8 @@ body {
 }
 
 .widget_container {
-    float: right;
+    position: fixed;
+    right: 20px;
     display: flex;
     flex-direction: row;
     padding: 20px;
