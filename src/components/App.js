@@ -44,7 +44,7 @@ class App extends React.Component {
       isFlipped: true
     }));
     this.setState({ loadingScreen: false });
-    this.setState({ questionStack: [] })
+    this.setState({ questionStack: [] });
     this.getQuestions();
   }
 
