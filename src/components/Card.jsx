@@ -39,9 +39,11 @@ class Card extends React.Component {
     if(this.state.isFlipped && this.state.isLoading){
       this.resetFlipped();
     }
+    console.log(this.state.isFlipped);
+    console.log(this.state.isLoading);
     return (
       <div className='container'>
-        <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} >
+        <div className={`card ${this.state.isFlipped ? ' is-flipped' : ''}`} onClick={this.handleClick}>
           <div className='card__face card__face--front'>
             <div className='titleFront'>
                {this.props.card.category}
