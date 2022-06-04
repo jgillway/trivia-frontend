@@ -60,11 +60,9 @@ class App extends React.Component {
     for (var i = 0; i < this.state.questionStack.length - 3; i + 3) {
         items.push(
           <>
-            <tr>
-              <td><Card key={i} loading={ this.state.isFlipped } card={ this.state.questionStack[i] } /></td>
-              <td><Card key={i+=1} loading={ this.state.isFlipped } card={ this.state.questionStack[i +1 ] } /></td>
-              <td><Card key={i+=2} loading={ this.state.isFlipped } card={ this.state.questionStack[ i+ 2] } /></td>
-            </tr>
+            <div className='card_column'><Card key={i} loading={ this.state.isFlipped } card={ this.state.questionStack[i] } /></div>
+            <div className='card_column'><Card key={i+=1} loading={ this.state.isFlipped } card={ this.state.questionStack[i+1] } /></div>
+            <div className='card_column'><Card key={i+=2} loading={ this.state.isFlipped } card={ this.state.questionStack[i+2] } /></div>
           </>
         );
     }
@@ -82,11 +80,11 @@ class App extends React.Component {
     const renderCards = this.state.loadingScreen;
     return (
       <>
-        <div className="header">
+        <div className='header'>
           <h1>Header Title</h1>
           <p>Header sub-text</p>
         </div>
-        <div className="main">
+        <div className='main'>
           <AddQuestionModal show={ this.state.showAddQuestionModel } changeShow={ this.onChangeShowAddQuestionModel } />
           <div className='widget_container' >
             <div className='add_question' onClick={ this.onChangeShowAddQuestionModel }><AddQuestion /></div>
@@ -95,15 +93,9 @@ class App extends React.Component {
           <h2>TITLE HEADING</h2>
           {renderCards
             ? <div className='card_container'>
-                <table>
-                  <thead>
-                  </thead>
-                  <tbody>
-                    {this.showItems()}
-                  </tbody>
-                  <tfoot>
-                  </tfoot>
-                </table>
+                <div className='card_row'>
+                  {this.showItems()}
+                </div>
               </div>
             : <div className='card_container'>
                 <h3>Loading please wait!</h3>

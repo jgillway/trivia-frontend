@@ -20,8 +20,8 @@ body {
 
 /* Main column */
 .main {   
-    -ms-flex: 70%; /* IE10 */
-    flex: 70%;
+    -ms-flex: 100%; /* IE10 */
+    flex: 100%;
     background-color: white;
     padding: 20px;
 }
@@ -33,35 +33,35 @@ body {
     justify-content: center;
 }
 
-@media screen and (max-width: 1560px) {
-    .card_container {
-        flex-direction: column;
-    }
+.card_column {
+    float: left;
+    padding: 10px;
+}
+
+.card_row:after {
+    display: table;
+    clear: both;
 }
 
 .widget_container {
     position: fixed;
-    right: 20px;
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    right: 5px;
+    z-index: 1;
 }
 
 .add_question {
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
-@media screen and (max-width: 1560px) {
-    .card_container {
-        flex-direction: column;
-    }
-
+@media screen and (max-width: 1200px) {
     .widget_container {
         flex-direction: column;
+        right: 0;
     }
 
     .add_question {
-        padding-right: 0px;
         padding-bottom: 5px;
     }
 }
