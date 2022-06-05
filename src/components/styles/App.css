@@ -1,13 +1,11 @@
-
-/* Style the body */
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
 
-/* Header/logo Title */
 .header {
     padding: 40px;
+    width: 100%;
     text-align: center;
     background: #1abc9c;
     color: white;
@@ -19,18 +17,18 @@ body {
 }
 
 /* Main column */
-.main {   
-    -ms-flex: 100%; /* IE10 */
-    flex: 100%;
+.main {
+    width: 100%;
+    display: flex;
     background-color: white;
-    padding: 20px;
 }
 
 .card_container {
+    flex: 1;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-left: 30px;
 }
 
 .card_column {
@@ -44,25 +42,18 @@ body {
 }
 
 .widget_container {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    right: 5px;
-    z-index: 1;
+    width: 50px;
+    margin-left: 20px;
 }
 
 .add_question {
-    padding-right: 5px;
+    position: fixed;
+    margin-top: 20px;
 }
 
-@media screen and (max-width: 1200px) {
-    .widget_container {
-        flex-direction: column;
-        right: 0;
-    }
-
-    .add_question {
-        padding-bottom: 5px;
-    }
+.refresh {
+    position: fixed;
+    margin-top: 70px;
 }
+
 

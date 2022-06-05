@@ -90,7 +90,6 @@ class App extends React.Component {
             <div className='add_question' onClick={ this.onChangeShowAddQuestionModel }><AddQuestion /></div>
             <div className='refresh'><RefreshArrow changeRefresh={ this.onChangeRefresh } loading={ this.state.isFlipped } /></div>
           </div>
-          <h2></h2>
           {renderCards
             ? <div className='card_container'>
                 <div className='card_row'>
