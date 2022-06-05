@@ -55,7 +55,7 @@ class Card extends React.Component {
           </div>
           <div className='card__face card__face--back'>
             <div className='titleBack'>
-              {this.state.card.text}
+              {this.state.card.category}
             </div>
             <p>{this.state.card.answer}</p>
           </div>
